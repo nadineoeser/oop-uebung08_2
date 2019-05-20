@@ -1,7 +1,7 @@
 _Übungsaufgabe zur Veranstaltung [Objektorientiertes Programmieren](https://hsro-wif-oop.github.io) im [Bachelorstudiengang Wirtschaftsinformatik](https://www.th-rosenheim.de/technik/informatik-mathematik/wirtschaftsinformatik-bachelor/) an der [Hochschule Rosenheim](http://www.th-rosenheim.de)._
 
 
-# Übung 8: Listen, Sets und Maps
+# Übung 8-2: Listen, Sets und Maps
 
 In dieser Übung verwenden Sie die Interfaces `List<T>`, `Set<T>`, `Map<K, V>` sowie das innere Interface `Map.Entry<K, V>`, welche alle in `java.util` eingeordnet sind.
 Mithilfe von `Iterator<T>`, welcher von Containerklassen bereit gestellt wird, die `Iterable<T>` implementieren (z.B. `LinkedList<T>`, `TreeSet<T>`), berechnen Sie Statistiken über Tweets, am Beispiel einer prominenten Person.
