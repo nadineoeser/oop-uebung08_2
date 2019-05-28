@@ -1,7 +1,5 @@
 package ueb08;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -38,7 +36,7 @@ public interface TweetSammlung {
 	/**
 	 * @return Ein Iterator ueber die Tweets, welche insgesamt die meisten buzzwordigen woerter haben.
 	 */
-	Iterator<Pair<String, Integer>> topTweets();
+	Iterator<Pair> topTweets();
 
 	/**
 	 * Splittet einen String in seine einzelnen Wörter

@@ -1,6 +1,5 @@
 package ueb08;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 
 
@@ -99,14 +98,14 @@ class TweetSammlungTests {
 		tweetSammlung.ingest("hans dampf will surfen #tale");
 		tweetSammlung.ingest("peter pan will fliegen #fairy");
 		tweetSammlung.ingest("dampf will in den Urlaub #fairy");
-		Iterator<Pair<String, Integer>> iterator = tweetSammlung.topTweets();
-		Pair<String, Integer> pair = iterator.next();
+		Iterator<Pair> iterator = tweetSammlung.topTweets();
+		Pair pair = iterator.next();
 		assertEquals("dampf will in den Urlaub #fairy", pair.getKey());
 		assertEquals("10", Integer.toString(pair.getValue()));
-		Pair<String, Integer> pair2 = iterator.next();
+		Pair pair2 = iterator.next();
 		assertEquals("hans dampf will surfen #tale", pair2.getKey());
 		assertEquals("8", Integer.toString(pair2.getValue()));
-		Pair<String, Integer> pair3 = iterator.next();
+		Pair pair3 = iterator.next();
 		assertEquals("peter pan will fliegen #fairy", pair3.getKey());
 		assertEquals("8", Integer.toString(pair3.getValue()));
 	}
@@ -146,7 +145,7 @@ class TweetSammlungTests {
 		System.out.println("\n" + "\n");
 		System.out.println("---------------------------------------");
 		System.out.println("** TopTweets **");
-		Iterator<Pair<String, Integer>> it1 = tsi.topTweets();
+		Iterator<Pair> it1 = tsi.topTweets();
 		for (int i = 0; i < n && it1.hasNext(); i++)
 			System.out.println(it1.next());
 	}

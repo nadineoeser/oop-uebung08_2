@@ -1,7 +1,5 @@
 package ueb08;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -92,8 +90,8 @@ public class TweetSammplungImpl implements TweetSammlung {
 	}
 
 	@Override
-	public Iterator<Pair<String, Integer>> topTweets() {
-		List<Pair<String, Integer>> list = new LinkedList<>();
+	public Iterator<Pair> topTweets() {
+		List<Pair> list = new LinkedList<>();
 
 		for (String s : tweets) {
 			int wert = 0;
@@ -103,13 +101,13 @@ public class TweetSammplungImpl implements TweetSammlung {
 				wert += counts.get(t);
 			}
 
-			list.add(Pair.of(s, wert));
+			list.add(new Pair(s, wert));
 		}
 
-		list.sort(new Comparator<Pair<String, Integer>>() {
+		list.sort(new Comparator<Pair>() {
 			@Override
-			public int compare(Pair<String, Integer> o1, Pair<String, Integer> o2) {
-				return Integer.compare(o2.getRight(), o1.getRight());
+			public int compare(Pair o1, Pair o2) {
+				return Integer.compare(o2.getValue(), o1.getValue());
 			}
 		});
 
