@@ -1,7 +1,5 @@
 package ueb08;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,23 +34,23 @@ public class TweetSammlungImpl implements TweetSammlung {
 	@Override
 	public Iterator<String> topHashTags() {
 		// filtern...
-		List<Pair<String, Integer>> help = new LinkedList<>();
+		List<Pair> help = new LinkedList<>();
 		for (Map.Entry<String, Integer> e : index.entrySet()) {
 			if (e.getKey().startsWith("#"))
-				help.add(Pair.of(e.getKey(), e.getValue()));
+				help.add(new Pair(e.getKey(), e.getValue()));
 		}
 
 		// sortieren, aufsteigend
-		help.sort(new Comparator<Pair<String, Integer>>() {
+		help.sort(new Comparator<Pair>() {
 			@Override
-			public int compare(Pair<String, Integer> o1, Pair<String, Integer> o2) {
+			public int compare(Pair o1, Pair o2) {
 				return o2.getValue() - o1.getValue();
 			}
 		});
 
 		// uebertragen in nur-key
 		List<String> list = new LinkedList<>();
-		for (Map.Entry<String, Integer> e : help)
+		for (Pair e : help)
 			list.add(e.getKey());
 
 		return list.iterator();
@@ -70,8 +68,8 @@ public class TweetSammlungImpl implements TweetSammlung {
 				.map(Map.Entry::getKey).iterator();
 	}
 
-	public Iterator<Pair<String, Integer>> topTweets() {
-		List<Pair<String, Integer>> list = new LinkedList<>();
+	public Iterator<Pair> topTweets() {
+		List<Pair> list = new LinkedList<>();
 		for (String tw : tweets) {
 			int summe = 0;
 			for (String tok : TweetSammlung.tokenize(tw)) {
@@ -79,13 +77,13 @@ public class TweetSammlungImpl implements TweetSammlung {
 					continue;
 				summe += index.get(tok);
 			}
-			list.add(Pair.of(tw, summe));
+			list.add(new Pair(tw, summe));
 		}
 
-		list.sort(new Comparator<Pair<String, Integer>>() {
+		list.sort(new Comparator<Pair>() {
 			@Override
-			public int compare(Pair<String, Integer> o1, Pair<String, Integer> o2) {
-				return Integer.compare(o2.getRight(), o1.getRight());
+			public int compare(Pair o1, Pair o2) {
+				return Integer.compare(o2.getValue(), o1.getValue());
 			}
 		});
 
